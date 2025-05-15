@@ -23,7 +23,7 @@ interface Game {
   updatedAt: string;
 }
 
-export default function Page({ lng }: { lng: string }) {
+export default function Page({ params: { lng } }: { params: { lng: string } }) {
   const { t } = useTranslation(lng, "games");
   const { data: session } = useSession();
   const [games, setGames] = useState<Game[]>([]);
