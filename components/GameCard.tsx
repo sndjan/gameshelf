@@ -23,6 +23,7 @@ interface GameCardProps {
   name: string;
   description: string;
   href: string;
+  user: string;
   rules?: string;
   players?: string;
   duration?: string;
@@ -36,6 +37,7 @@ export function GameCard({
   name,
   description,
   href,
+  user,
   players,
   duration,
   tags,
@@ -53,6 +55,9 @@ export function GameCard({
       <CardHeader>
         <CardTitle className="text-xl">{name}</CardTitle>
         <CardDescription>{description}</CardDescription>
+        <div className="flex items-center gap-1.5 mt-2">
+          <span className="text-xs text-muted-foreground">von {user}</span>
+        </div>
       </CardHeader>
       <CardContent className="flex-grow space-y-2">
         <div className="flex flex-wrap gap-y-2 gap-x-4">

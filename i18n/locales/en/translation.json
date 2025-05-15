@@ -1,6 +1,8 @@
 {
   "h1": "GameShelf",
   "title": "Home",
+  "featured-games": "Featured Games",
+  "view-collection": "View Collection",
   "to-client-page": "To client page",
   "to-second-page": "To second page",
   "welcome": "Welcome to Next.js 13/14/15 <1>with the new app directory features</1> and i18next",

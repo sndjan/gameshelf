@@ -1,6 +1,8 @@
 {
   "h1": "GameShelf",
   "title": "Hauptseite",
+  "featured-games": "Ausgewählte Spiele",
+  "view-collection": "Sammlung anzeigen",
   "to-client-page": "Zur client seitigen Seite",
   "to-second-page": "Zur zweiten Seite",
   "welcome": "Willkommen ZU Next.js 13/14/15 <1>mit den neuen App-Verzeichnisfunktionen</1> und i18next",
