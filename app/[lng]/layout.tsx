@@ -4,6 +4,8 @@ import { dir } from "i18next";
 import { languages, fallbackLng } from "../../i18n/settings";
 import { useTranslation } from "../../i18n";
 import { ThemeProvider } from "../../components/theme/ThemeProvider";
+import SessionProvider from "../../components/Provider/SessionProvider";
+import { getServerSession } from "next-auth";
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
@@ -33,11 +35,14 @@ export default async function RootLayout({
   params: Promise<{ lng: string }>;
 }) {
   const { lng } = await params;
+  const session = await getServerSession();
   return (
     <html lang={lng} dir={dir(lng)}>
       <head />
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <SessionProvider session={session}>
+          <ThemeProvider>{children}</ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );
