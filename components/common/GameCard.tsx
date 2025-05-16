@@ -12,6 +12,7 @@ import {
   ArrowRightIcon,
   BarChartHorizontal,
   Clock,
+  Heart,
   Library,
   Tags,
   Users,
@@ -47,7 +48,7 @@ export function GameCard({
   return (
     <Card
       className={cn(
-        "flex flex-col h-full transition-all hover:shadow-lg",
+        "flex flex-col h-full transition-all hover:shadow-md",
         className
       )}
     >
@@ -106,12 +107,30 @@ export function GameCard({
         )}
       </CardContent>
 
-      <CardFooter>
-        <Button asChild variant="outline" className="w-full" size="sm">
+      <CardFooter className="flex justify-between gap-2">
+        <Button
+          asChild
+          variant="outline"
+          className="flex-1"
+          size="sm"
+          onClick={() => {
+            window.alert("Feature not implemented yet");
+          }}
+        >
           <Link href={href}>
-            Learn more
+            Erfahre mehr
             <ArrowRightIcon className="ml-1.5 h-3 w-3" />
           </Link>
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          className="px-2"
+          onClick={() => {
+            window.alert("Feature not implemented yet");
+          }}
+        >
+          <Heart className="h-4 w-4" />
         </Button>
       </CardFooter>
     </Card>

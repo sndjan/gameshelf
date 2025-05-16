@@ -2,14 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {
-  BookMarked,
-  Heart,
-  LayoutDashboard,
-  LogIn,
-  Settings,
-  UserPlus,
-} from "lucide-react";
+import { BookMarked, Heart, LogIn } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { LogoutButton } from "./LogoutButton";
@@ -34,19 +27,7 @@ export function ProfileMenu({ onClose }: ProfileMenuProps) {
           >
             <Link href="/api/auth/signin">
               <LogIn className="mr-2 h-4 w-4" />
-              Sign In
-            </Link>
-          </Button>
-
-          <Button
-            asChild
-            variant="outline"
-            className="w-full justify-start"
-            onClick={onClose}
-          >
-            <Link href="/register">
-              <UserPlus className="mr-2 h-4 w-4" />
-              Create Account
+              Anmelden
             </Link>
           </Button>
         </div>
@@ -57,31 +38,16 @@ export function ProfileMenu({ onClose }: ProfileMenuProps) {
   return (
     <div className="space-y-6">
       <Separator />
-
       <div className="space-y-1">
-        <h3 className="text-sm font-medium text-muted-foreground mb-2">
-          My Games
-        </h3>
         <Button
           asChild
           variant="ghost"
           className="w-full justify-start"
           onClick={onClose}
         >
-          <Link href="/dashboard">
-            <LayoutDashboard className="mr-2 h-4 w-4" />
-            Dashboard
-          </Link>
-        </Button>
-        <Button
-          asChild
-          variant="ghost"
-          className="w-full justify-start"
-          onClick={onClose}
-        >
-          <Link href="/favorites">
+          <Link href="/">
             <Heart className="mr-2 h-4 w-4" />
-            Favorites
+            Favoriten
           </Link>
         </Button>
         <Button
@@ -90,34 +56,13 @@ export function ProfileMenu({ onClose }: ProfileMenuProps) {
           className="w-full justify-start"
           onClick={onClose}
         >
-          <Link href="/collections">
+          <Link href="/">
             <BookMarked className="mr-2 h-4 w-4" />
-            My Collections
+            Meine Spiele
           </Link>
         </Button>
       </div>
-
       <Separator />
-
-      <div className="space-y-1">
-        <h3 className="text-sm font-medium text-muted-foreground mb-2">
-          Settings
-        </h3>
-        <Button
-          asChild
-          variant="ghost"
-          className="w-full justify-start"
-          onClick={onClose}
-        >
-          <Link href="/settings">
-            <Settings className="mr-2 h-4 w-4" />
-            Account Settings
-          </Link>
-        </Button>
-      </div>
-
-      <Separator />
-
       <div>
         <LogoutButton />
       </div>

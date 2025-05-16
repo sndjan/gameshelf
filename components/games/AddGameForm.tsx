@@ -1,15 +1,6 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -96,147 +87,102 @@ export function AddGameForm({ onSuccess }: AddGameFormProps) {
     }
   };
 
-  if (!session) {
-    return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Authentication Required</CardTitle>
-          <CardDescription>
-            Please sign in to add a game to your collection
-          </CardDescription>
-        </CardHeader>
-        <CardFooter>
-          <Button onClick={() => router.push("/login")}>Sign In</Button>
-        </CardFooter>
-      </Card>
-    );
-  }
-
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Add New Game</CardTitle>
-        <CardDescription>
-          Fill out the form below to add a new game to your collection
-        </CardDescription>
-      </CardHeader>
-      <Tabs defaultValue="basic">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="basic">Basic Info</TabsTrigger>
-          <TabsTrigger value="details">Game Details</TabsTrigger>
-        </TabsList>
-        <form onSubmit={handleSubmit}>
-          <TabsContent value="basic">
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Name*</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  placeholder="Game name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="description">Description*</Label>
-                <Textarea
-                  id="description"
-                  name="description"
-                  placeholder="Game description"
-                  required
-                  rows={3}
-                  value={formData.description}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="imageUrl">Image URL</Label>
-                <Input
-                  id="imageUrl"
-                  name="imageUrl"
-                  placeholder="https://example.com/image.jpg"
-                  type="url"
-                  value={formData.imageUrl}
-                  onChange={handleChange}
-                />
-              </div>
-            </CardContent>
-          </TabsContent>
-
-          <TabsContent value="details">
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="players">Players</Label>
-                <Input
-                  id="players"
-                  name="players"
-                  placeholder="1-4 players"
-                  value={formData.players}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="duration">Duration</Label>
-                <Input
-                  id="duration"
-                  name="duration"
-                  placeholder="30-45 minutes"
-                  value={formData.duration}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="difficulty">Difficulty</Label>
-                <Input
-                  id="difficulty"
-                  name="difficulty"
-                  placeholder="Easy, Medium, Hard"
-                  value={formData.difficulty}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="tags">Tags</Label>
-                <Input
-                  id="tags"
-                  name="tags"
-                  placeholder="Strategy, Family, Card Game (comma separated)"
-                  value={formData.tags}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="decks">Decks/Components</Label>
-                <Input
-                  id="decks"
-                  name="decks"
-                  placeholder="2 decks, 4 player boards"
-                  value={formData.decks}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="rules">Rules Summary</Label>
-                <Textarea
-                  id="rules"
-                  name="rules"
-                  placeholder="Brief rules overview"
-                  rows={3}
-                  value={formData.rules}
-                  onChange={handleChange}
-                />
-              </div>
-            </CardContent>
-          </TabsContent>
-          <CardFooter>
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? "Adding..." : "Add Game"}
-            </Button>
-          </CardFooter>
-        </form>
-      </Tabs>
-    </Card>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="space-y-2">
+        <Label htmlFor="name">Name*</Label>
+        <Input
+          id="name"
+          name="name"
+          placeholder="Name des Spiels"
+          required
+          value={formData.name}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="description">Beschreibung*</Label>
+        <Textarea
+          id="description"
+          name="description"
+          placeholder="Beschreibung des Spiels"
+          required
+          rows={3}
+          value={formData.description}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="rules">Regeln*</Label>
+        <Textarea
+          id="rules"
+          name="rules"
+          placeholder="Spielregeln"
+          required
+          rows={3}
+          value={formData.rules}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="players">Spieler*</Label>
+          <Input
+            id="players"
+            name="players"
+            placeholder="1-4 Spieler"
+            required
+            value={formData.players}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="duration">Dauer*</Label>
+          <Input
+            id="duration"
+            name="duration"
+            placeholder="30-45 Minuten"
+            required
+            value={formData.duration}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="difficulty">Schwierigkeit*</Label>
+          <Input
+            id="difficulty"
+            name="difficulty"
+            placeholder="Leicht, Mittel, Schwer"
+            required
+            value={formData.difficulty}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="decks">Decks*</Label>
+          <Input
+            id="decks"
+            name="decks"
+            placeholder="1 Skat Deck"
+            required
+            value={formData.decks}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="tags">Tags</Label>
+        <Input
+          id="tags"
+          name="tags"
+          placeholder="Strategie, Spannend, Familienfreundlich (kommagetrennt)"
+          value={formData.tags}
+          onChange={handleChange}
+        />
+      </div>
+      <Button type="submit" disabled={isLoading} className="w-full">
+        {isLoading ? "Adding..." : "Add Game"}
+      </Button>
+    </form>
   );
 }

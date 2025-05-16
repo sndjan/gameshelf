@@ -4,7 +4,6 @@ import { GameCard } from "@/components/common/GameCard";
 import { Header } from "@/components/common/Header";
 import { AddGameButton } from "@/components/games/AddGameButton";
 import { useTranslation } from "@/i18n/client";
-import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 interface Game {
@@ -25,7 +24,6 @@ interface Game {
 
 export default function GamePage({ lng }: { lng: string }) {
   const { t } = useTranslation(lng, "games");
-  const { data: session } = useSession();
   const [games, setGames] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -48,7 +46,9 @@ export default function GamePage({ lng }: { lng: string }) {
   return (
     <main>
       <Header heading={t("h1")} />
-      {!session && <AddGameButton />}
+      <div className="flex justify-between items-center pl-2">
+        <AddGameButton />
+      </div>
       <div className="container mx-auto p-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {isLoading ? (

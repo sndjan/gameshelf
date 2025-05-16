@@ -31,9 +31,10 @@ export function ProfileHeader() {
           </div>
         </div>
         <div className="space-y-1 text-center">
-          <p className="text-lg font-medium">Not Signed In</p>
+          <p className="text-lg font-medium">Nicht angemeldet</p>
           <p className="text-sm text-muted-foreground">
-            Sign in to access your game collection
+            Du bist nicht angemeldet. Bitte melde dich an, um dein Profil zu
+            sehen.
           </p>
         </div>
       </div>

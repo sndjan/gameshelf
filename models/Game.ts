@@ -1,16 +1,15 @@
-import { Schema, models, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 export interface IGame {
   name: string;
   description: string;
-  rules?: string;
-  players?: string;
-  duration?: string;
+  rules: string;
+  players: string;
+  duration: string;
+  decks: string;
+  difficulty: string;
   tags?: string[];
-  decks?: string;
-  difficulty?: string;
-  imageUrl?: string;
-  userId: string; // Reference to the user who added the game
+  userId: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -28,24 +27,26 @@ const gameSchema = new Schema<IGame>(
     },
     rules: {
       type: String,
+      required: [true, "Please provide rules"],
     },
     players: {
       type: String,
+      required: [true, "Please provide players information"],
     },
     duration: {
       type: String,
-    },
-    tags: {
-      type: [String],
+      required: [true, "Please provide duration"],
     },
     decks: {
       type: String,
+      required: [true, "Please provide decks information"],
     },
     difficulty: {
       type: String,
+      required: [true, "Please provide difficulty level"],
     },
-    imageUrl: {
-      type: String,
+    tags: {
+      type: [String],
     },
     userId: {
       type: String,
@@ -57,5 +58,4 @@ const gameSchema = new Schema<IGame>(
   }
 );
 
-// Check if the model already exists to prevent overwriting
 export const Game = models.Game || model<IGame>("Game", gameSchema);
