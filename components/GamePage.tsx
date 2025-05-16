@@ -1,11 +1,11 @@
 "use client";
 
+import { GameCard } from "@/components/common/GameCard";
+import { Header } from "@/components/common/Header";
+import { AddGameButton } from "@/components/games/AddGameButton";
+import { useTranslation } from "@/i18n/client";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { Header } from "@/components/Header/Header";
-import { AddGameButton } from "@/components/AddGameButton";
-import { GameCard } from "@/components/GameCard";
-import { useTranslation } from "@/i18n/client";
 
 interface Game {
   _id: string;
@@ -48,7 +48,7 @@ export default function GamePage({ lng }: { lng: string }) {
   return (
     <main>
       <Header heading={t("h1")} />
-      {session && <AddGameButton />}
+      {!session && <AddGameButton />}
       <div className="container mx-auto p-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {isLoading ? (
@@ -56,7 +56,7 @@ export default function GamePage({ lng }: { lng: string }) {
               {[...Array(6)].map((_, i) => (
                 <div
                   key={i}
-                  className="h-64 rounded-lg bg-muted animate-pulse"
+                  className="h-64 w-64 rounded-lg bg-muted animate-pulse"
                 />
               ))}
             </div>

@@ -2,12 +2,5 @@
   "h1": "GameShelf",
   "title": "Home",
   "featured-games": "Featured Games",
-  "view-collection": "View Collection",
-  "to-client-page": "To client page",
-  "to-second-page": "To second page",
-  "welcome": "Welcome to Next.js 13/14/15 <1>with the new app directory features</1> and i18next",
-  "blog": {
-    "text": "Check out the corresponding <1>blog post</1> describing this example.",
-    "link": "https://locize.com/blog/next-app-dir-i18n/"
-  }
+  "view-collection": "View Collection"
 }

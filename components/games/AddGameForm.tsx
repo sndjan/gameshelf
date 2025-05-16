@@ -1,7 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Card,
   CardContent,
@@ -10,10 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
 
 interface AddGameFormProps {
   onSuccess?: () => void;
@@ -73,7 +73,6 @@ export function AddGameForm({ onSuccess }: AddGameFormProps) {
         throw new Error(error.error || "Failed to add game");
       }
 
-      // Clear form
       setFormData({
         name: "",
         description: "",
@@ -85,10 +84,8 @@ export function AddGameForm({ onSuccess }: AddGameFormProps) {
         difficulty: "",
         imageUrl: "",
       });
-      // Refresh the page to see the new game
       router.refresh();
 
-      // Call onSuccess callback if provided (to close dialog, etc.)
       if (onSuccess) {
         onSuccess();
       }

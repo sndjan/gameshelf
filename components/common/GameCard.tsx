@@ -1,23 +1,22 @@
-import * as React from "react";
-import Link from "next/link";
-import {
-  Users,
-  Clock,
-  Tags,
-  BarChartHorizontal,
-  Library,
-  ArrowRightIcon,
-} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import {
+  ArrowRightIcon,
+  BarChartHorizontal,
+  Clock,
+  Library,
+  Tags,
+  Users,
+} from "lucide-react";
+import Link from "next/link";
 
 interface GameCardProps {
   name: string;

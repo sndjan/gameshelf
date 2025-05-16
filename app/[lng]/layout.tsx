@@ -1,11 +1,11 @@
 import "./globals.css";
 
 import { dir } from "i18next";
-import { languages, fallbackLng } from "../../i18n/settings";
-import { useTranslation } from "../../i18n";
-import { ThemeProvider } from "../../components/theme/ThemeProvider";
-import SessionProvider from "../../components/Provider/SessionProvider";
 import { getServerSession } from "next-auth";
+import SessionProvider from "../../components/provider/SessionProvider";
+import { ThemeProvider } from "../../components/theme/ThemeProvider";
+import { useTranslation } from "../../i18n";
+import { fallbackLng, languages } from "../../i18n/settings";
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
@@ -22,8 +22,7 @@ export async function generateMetadata({
   const { t } = await useTranslation(lng);
   return {
     title: t("title"),
-    content:
-      "Template for Next.js 15 with i18next, TypeScript, Tailwind CSS, ShadcnUI and NextThemes",
+    content: "A simple game collection webpage.",
   };
 }
 

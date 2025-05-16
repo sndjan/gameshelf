@@ -1,8 +1,8 @@
 import { Spade } from "lucide-react";
+import { ProfileButton } from "../profile/ProfileButton";
 import { ThemeToggle } from "../theme/ThemeToggle";
 import { Card } from "../ui/card";
-import { ProfileButton } from "../Profile/ProfileButton";
-import { MenuButton } from "../Menu/MenuButton";
+import { MenuButton } from "./MenuButton";
 
 export const Header = ({ heading }: { heading: string }) => (
   <Card className="m-2 p-2 pl-4 shadow-md">

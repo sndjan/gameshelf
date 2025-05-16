@@ -1,18 +1,18 @@
 "use client";
 
-import { useSession } from "next-auth/react";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
-  Settings,
   BookMarked,
   Heart,
   LayoutDashboard,
   LogIn,
+  Settings,
   UserPlus,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { LogoutButton } from "./LogoutButton";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { LogoutButton } from "./LogoutButton.jsx";
 
 interface ProfileMenuProps {
   onClose: () => void;
@@ -119,7 +119,7 @@ export function ProfileMenu({ onClose }: ProfileMenuProps) {
       <Separator />
 
       <div>
-        <LogoutButton className="w-full" />
+        <LogoutButton />
       </div>
     </div>
   );

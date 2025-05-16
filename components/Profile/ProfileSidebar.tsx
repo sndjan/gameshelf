@@ -2,10 +2,10 @@
 
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetClose,
 } from "@/components/ui/sheet";
 import { ProfileHeader } from "./ProfileHeader";
 import { ProfileMenu } from "./ProfileMenu";

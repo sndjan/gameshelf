@@ -1,16 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { signOut } from "next-auth/react";
-import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { LogOut } from "lucide-react";
+import { signOut } from "next-auth/react";
+import { useState } from "react";
 
-interface LogoutButtonProps {
-  className?: string;
-}
-
-export function LogoutButton({ className }: LogoutButtonProps) {
+export function LogoutButton() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogout = async () => {
@@ -27,7 +22,7 @@ export function LogoutButton({ className }: LogoutButtonProps) {
   return (
     <Button
       variant="destructive"
-      className={cn("justify-start", className)}
+      className={"w-full justify-start"}
       onClick={handleLogout}
       disabled={isLoading}
     >

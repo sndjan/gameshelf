@@ -1,9 +1,9 @@
 import { i18n } from "i18next";
+import { GlobeIcon } from "lucide-react";
 import Link from "next/link";
 import { Trans } from "react-i18next/TransWithoutContext";
-import { languages } from "../../i18n/settings";
-import { Button } from "../ui/button";
-import { GlobeIcon } from "lucide-react";
+import { languages } from "../../../i18n/settings";
+import { Button } from "../../ui/button";
 
 export const FooterBase = ({
   i18n,
