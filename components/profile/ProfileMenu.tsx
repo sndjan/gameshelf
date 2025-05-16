@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { BookMarked, Heart, LogIn } from "lucide-react";
+import { BookMarked, Heart, Library, LogIn } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { LogoutButton } from "./LogoutButton";
@@ -46,6 +46,17 @@ export function ProfileMenu({ onClose }: ProfileMenuProps) {
           onClick={onClose}
         >
           <Link href="/">
+            <Library className="mr-2 h-4 w-4" />
+            Alle Spiele
+          </Link>
+        </Button>
+        <Button
+          asChild
+          variant="ghost"
+          className="w-full justify-start"
+          onClick={onClose}
+        >
+          <Link href="/favoriten">
             <Heart className="mr-2 h-4 w-4" />
             Favoriten
           </Link>

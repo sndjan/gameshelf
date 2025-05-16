@@ -7,7 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   ArrowRightIcon,
   BarChartHorizontal,
@@ -17,12 +23,14 @@ import {
   Tags,
   Users,
 } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface GameCardProps {
   name: string;
   description: string;
-  href: string;
   user: string;
   rules?: string;
   players?: string;
@@ -30,28 +38,61 @@ interface GameCardProps {
   tags?: string[];
   decks?: string;
   difficulty?: string;
-  className?: string;
+  _id: string;
+  isFavorite?: boolean;
+  onFavoriteChange?: (fav: boolean) => void;
 }
 
 export function GameCard({
   name,
   description,
-  href,
   user,
   players,
   duration,
   tags,
   decks,
   difficulty,
-  className,
-}: GameCardProps) {
+  _id,
+  isFavorite: isFavoriteProp,
+  onFavoriteChange,
+}: GameCardProps & {
+  _id: string;
+  isFavorite?: boolean;
+  onFavoriteChange?: (fav: boolean) => void;
+}) {
+  const { data: session } = useSession();
+  const [isFavorite, setIsFavorite] = useState(isFavoriteProp || false);
+  useEffect(() => {
+    setIsFavorite(isFavoriteProp || false);
+  }, [isFavoriteProp]);
+  const [showLogin, setShowLogin] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleFavorite = async () => {
+    if (!session) {
+      setShowLogin(true);
+      return;
+    }
+    setLoading(true);
+    try {
+      const method = isFavorite ? "DELETE" : "POST";
+      const res = await fetch("/api/favorites", {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ gameId: _id }),
+      });
+      if (res.ok) {
+        setIsFavorite(!isFavorite);
+        onFavoriteChange?.(!isFavorite);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <Card
-      className={cn(
-        "flex flex-col h-full transition-all hover:shadow-md",
-        className
-      )}
-    >
+    <Card className="flex flex-col h-full transition-all hover:shadow-md">
       <CardHeader>
         <CardTitle className="text-xl">{name}</CardTitle>
         <CardDescription>{description}</CardDescription>
@@ -108,31 +149,39 @@ export function GameCard({
       </CardContent>
 
       <CardFooter className="flex justify-between gap-2">
-        <Button
-          asChild
-          variant="outline"
-          className="flex-1"
-          size="sm"
-          onClick={() => {
-            window.alert("Feature not implemented yet");
-          }}
-        >
-          <Link href={href}>
+        <Button asChild variant="outline" className="flex-1" size="sm">
+          <Link href={"/"}>
             Erfahre mehr
             <ArrowRightIcon className="ml-1.5 h-3 w-3" />
           </Link>
         </Button>
         <Button
-          variant="outline"
+          variant={"outline"}
           size="sm"
           className="px-2"
-          onClick={() => {
-            window.alert("Feature not implemented yet");
-          }}
+          onClick={handleFavorite}
+          disabled={loading}
+          aria-label={
+            isFavorite ? "Aus Favoriten entfernen" : "Zu Favoriten hinzufügen"
+          }
         >
-          <Heart className="h-4 w-4" />
+          <Heart className={`h-4 w-4`} fill={isFavorite ? "black" : "none"} />
         </Button>
       </CardFooter>
+      <Dialog open={showLogin} onOpenChange={setShowLogin}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Authentifizierung erforderlich</DialogTitle>
+            <DialogDescription>
+              Du musst dich anmelden, um Spiele zu favorisieren. Bitte klicke
+              auf die Schaltfläche unten, um dich anzumelden.
+            </DialogDescription>
+          </DialogHeader>
+          <Button onClick={() => router.push("/api/auth/signin")}>
+            Anmelden
+          </Button>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }
