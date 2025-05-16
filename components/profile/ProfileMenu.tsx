@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { LogoutButton } from "./LogoutButton.jsx";
+import { LogoutButton } from "./LogoutButton";
 
 interface ProfileMenuProps {
   onClose: () => void;
