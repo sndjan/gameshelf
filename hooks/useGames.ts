@@ -23,9 +23,8 @@ export function useGames(options?: { uploadedByMe?: boolean }) {
   const fetchFavorites = useCallback(async () => {
     if (!session) return;
     setIsLoading(true);
-    const res = await fetch("/api/favorites");
+    const res = await fetch("/api/favorites", { cache: "no-store" });
     const data = await res.json();
-    console.log("Fetched favorites:", data.favorites);
     setFavoriteIds(
       Array.isArray(data.favorites)
         ? data.favorites.map((f: { _id: string }) => f._id)
