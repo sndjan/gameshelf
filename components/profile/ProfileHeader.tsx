@@ -80,6 +80,8 @@ export function ProfileHeader() {
       </div>
       <div className="space-y-1 text-center">
         <p className="text-lg font-medium">{session.user?.name}</p>
+        {/* Optionally show user id for debugging or future use */}
+        {/* <p className="text-xs text-muted-foreground">ID: {session.user?.id}</p> */}
         <p className="text-sm text-muted-foreground">{session.user?.email}</p>
         {statsLoading ? (
           <div className="flex flex-col items-center mt-2">

@@ -7,14 +7,16 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || !session.user?.email) {
+    // @ts-expect-error: id is injected by our NextAuth callback
+    if (!session || !session.user?.id) {
       return NextResponse.json(
         { error: "Nicht authentifiziert" },
         { status: 401 }
       );
     }
     await dbConnect();
-    const user = await User.findOne({ email: session.user.email });
+    // @ts-expect-error: id is injected by our NextAuth callback
+    const user = await User.findById(session.user.id);
     const uploadedCount = user?.get("games")?.length || 0;
     const favoritesCount = user?.get("favorites")?.length || 0;
     return NextResponse.json(

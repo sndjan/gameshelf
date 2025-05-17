@@ -7,16 +7,16 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || !session.user?.email) {
+    // @ts-expect-error: id is injected by our NextAuth callback
+    if (!session || !session.user?.id) {
       return NextResponse.json(
         { error: "Nicht authentifiziert" },
         { status: 401 }
       );
     }
     await dbConnect();
-    const user = await User.findOne({ email: session.user.email }).populate(
-      "favorites"
-    );
+    // @ts-expect-error: id is injected by our NextAuth callback
+    const user = await User.findById(session.user.id).populate("favorites");
     if (!user) {
       return NextResponse.json({ favorites: [] }, { status: 200 });
     }
@@ -33,7 +33,8 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || !session.user?.email) {
+    // @ts-expect-error: id is injected by our NextAuth callback
+    if (!session || !session.user?.id) {
       return NextResponse.json(
         { error: "Nicht authentifiziert" },
         { status: 401 }
@@ -41,9 +42,10 @@ export async function POST(request: Request) {
     }
     const { gameId } = await request.json();
     await dbConnect();
-    let user = await User.findOne({ email: session.user.email });
+    // @ts-expect-error: id is injected by our NextAuth callback
+    const user = await User.findById(session.user.id);
     if (!user) {
-      user = await User.create({ email: session.user.email, favorites: [] });
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
     if (!user.favorites.includes(gameId)) {
       user.favorites.push(gameId);
@@ -62,7 +64,8 @@ export async function POST(request: Request) {
 export async function DELETE(request: Request) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || !session.user?.email) {
+    // @ts-expect-error: id is injected by our NextAuth callback
+    if (!session || !session.user?.id) {
       return NextResponse.json(
         { error: "Nicht authentifiziert" },
         { status: 401 }
@@ -70,7 +73,8 @@ export async function DELETE(request: Request) {
     }
     const { gameId } = await request.json();
     await dbConnect();
-    const user = await User.findOne({ email: session.user.email });
+    // @ts-expect-error: id is injected by our NextAuth callback
+    const user = await User.findById(session.user.id);
     if (user && user.favorites.includes(gameId)) {
       user.favorites = user.favorites.filter(
         (id: string) => id.toString() !== gameId

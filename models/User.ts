@@ -7,7 +7,7 @@ export interface IUser extends Document {
 }
 
 const UserSchema = new Schema<IUser>({
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true },
   favorites: [{ type: Schema.Types.ObjectId, ref: "Game" }],
   games: [{ type: Schema.Types.ObjectId, ref: "Game" }],
 });

@@ -13,13 +13,15 @@ export async function GET(request: NextRequest) {
     let games;
     if (uploadedByMe) {
       const session = await getServerSession(authOptions);
-      if (!session || !session.user?.email) {
+      // @ts-expect-error: id is injected by our NextAuth callback
+      if (!session || !session.user?.id) {
         return NextResponse.json(
           { error: "Nicht authentifiziert" },
           { status: 401 }
         );
       }
-      const user = await User.findOne({ email: session.user.email });
+      // @ts-expect-error: id is injected by our NextAuth callback
+      const user = await User.findById(session.user.id);
       const gameIds = user.get("games") || [];
       games = await Game.find({ _id: { $in: gameIds } }).sort({
         createdAt: -1,
@@ -39,29 +41,22 @@ export async function GET(request: NextRequest) {
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
-
-    if (!session || !session.user) {
+    // @ts-expect-error: id is injected by our NextAuth callback
+    if (!session || !session.user?.id) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
-
     const data = await request.json();
     await dbConnect();
-
-    let user = await User.findOne({ email: session.user.email });
+    // @ts-expect-error: id is injected by our NextAuth callback
+    const user = await User.findById(session.user.id);
     if (!user) {
-      user = await User.create({
-        email: session.user.email,
-        favorites: [],
-        games: [],
-      });
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
-
     const game = await Game.create({
       ...data,
-      userId: session.user.email,
+      userId: user._id,
     });
-
-    await User.updateOne({ email: session.user.email }, [
+    await User.updateOne({ _id: user._id }, [
       {
         $set: {
           games: {
@@ -74,7 +69,6 @@ export async function POST(request: Request) {
         },
       },
     ]);
-
     return NextResponse.json({ game }, { status: 201 });
   } catch (error: unknown) {
     const errorMessage =
