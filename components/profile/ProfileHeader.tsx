@@ -4,9 +4,24 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserRound } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 export function ProfileHeader() {
   const { data: session, status } = useSession();
+  const [stats, setStats] = useState<{
+    uploadedCount: number;
+    favoritesCount: number;
+  } | null>(null);
+  const [statsLoading, setStatsLoading] = useState(false);
+
+  useEffect(() => {
+    if (!session) return;
+    setStatsLoading(true);
+    fetch("/api/profile-stats")
+      .then((res) => res.json())
+      .then((data) => setStats(data))
+      .finally(() => setStatsLoading(false));
+  }, [session]);
 
   if (status === "loading") {
     return (
@@ -66,6 +81,23 @@ export function ProfileHeader() {
       <div className="space-y-1 text-center">
         <p className="text-lg font-medium">{session.user?.name}</p>
         <p className="text-sm text-muted-foreground">{session.user?.email}</p>
+        {statsLoading ? (
+          <div className="flex flex-col items-center mt-2">
+            <Skeleton className="h-4 w-32 mb-1" />
+            <Skeleton className="h-4 w-32" />
+          </div>
+        ) : (
+          stats && (
+            <div className="flex flex-col items-center mt-2 text-xs text-muted-foreground gap-1">
+              <span>
+                Hochgeladene Spiele: <b>{stats.uploadedCount}</b>
+              </span>
+              <span>
+                Favoriten: <b>{stats.favoritesCount}</b>
+              </span>
+            </div>
+          )
+        )}
       </div>
     </div>
   );

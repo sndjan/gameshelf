@@ -67,7 +67,7 @@ export function ProfileMenu({ onClose }: ProfileMenuProps) {
           className="w-full justify-start"
           onClick={onClose}
         >
-          <Link href="/">
+          <Link href="/mygames">
             <BookMarked className="mr-2 h-4 w-4" />
             Meine Spiele
           </Link>
