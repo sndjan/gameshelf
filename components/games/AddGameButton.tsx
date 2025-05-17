@@ -16,7 +16,11 @@ import { useState } from "react";
 import { CardFooter } from "../ui/card";
 import { AddGameForm } from "./AddGameForm";
 
-export function AddGameButton() {
+interface AddGameButtonProps {
+  onGameAdded?: () => void;
+}
+
+export function AddGameButton({ onGameAdded }: AddGameButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
@@ -57,7 +61,12 @@ export function AddGameButton() {
                 ausfüllst.
               </DialogDescription>
             </DialogHeader>
-            <AddGameForm onSuccess={() => setIsOpen(false)} />
+            <AddGameForm
+              onSuccess={() => {
+                setIsOpen(false);
+                if (onGameAdded) onGameAdded();
+              }}
+            />
           </>
         )}
       </DialogContent>

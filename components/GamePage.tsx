@@ -30,18 +30,19 @@ export default function GamePage({ lng }: { lng: string }) {
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
   const { data: session } = useSession();
 
+  const fetchGames = async () => {
+    try {
+      const response = await fetch("/api/games");
+      const data = await response.json();
+      setGames(data.games);
+    } catch (error) {
+      console.error("Error fetching games:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const response = await fetch("/api/games");
-        const data = await response.json();
-        setGames(data.games);
-      } catch (error) {
-        console.error("Error fetching games:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
     fetchGames();
   }, []);
 
@@ -70,7 +71,7 @@ export default function GamePage({ lng }: { lng: string }) {
     <main>
       <Header heading={t("h1")} />
       <div className="flex justify-between items-center pl-2">
-        <AddGameButton />
+        <AddGameButton onGameAdded={fetchGames} />
       </div>
       <div className="container mx-auto p-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
