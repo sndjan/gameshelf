@@ -18,7 +18,10 @@ interface ProfileSidebarProps {
 export function ProfileSidebar({ isOpen, onClose }: ProfileSidebarProps) {
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent className="w-full sm:max-w-md p-0 flex flex-col">
+      <SheetContent
+        className="w-full sm:max-w-md p-0 flex flex-col"
+        aria-describedby={undefined}
+      >
         <SheetHeader className="border-b p-4">
           <div className="flex justify-between items-center">
             <SheetTitle>Profile</SheetTitle>

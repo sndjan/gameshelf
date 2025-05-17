@@ -1,4 +1,4 @@
-import GamePage from "@/components/GamePage";
+import Games from "@/components/pages/Games";
 
 export default async function Page({
   params,
@@ -6,5 +6,5 @@ export default async function Page({
   params: Promise<{ lng: string }>;
 }) {
   const { lng } = await params;
-  return <GamePage lng={lng} />;
+  return <Games lng={lng} />;
 }
