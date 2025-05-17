@@ -83,8 +83,11 @@ export function GameCard({
         body: JSON.stringify({ gameId: _id }),
       });
       if (res.ok) {
-        setIsFavorite(!isFavorite);
-        onFavoriteChange?.(!isFavorite);
+        if (onFavoriteChange) {
+          onFavoriteChange(!isFavorite);
+        } else {
+          setIsFavorite(!isFavorite);
+        }
       }
     } finally {
       setLoading(false);
