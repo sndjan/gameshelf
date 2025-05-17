@@ -1,5 +1,6 @@
 "use client";
 
+import { LoginRequiredDialog } from "@/components/common/LoginRequiredDialog";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,9 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Plus } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { CardFooter } from "../ui/card";
 import { AddGameForm } from "./AddGameForm";
 
 interface AddGameButtonProps {
@@ -23,7 +22,6 @@ interface AddGameButtonProps {
 export function AddGameButton({ onGameAdded }: AddGameButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
-  const router = useRouter();
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -33,27 +31,14 @@ export function AddGameButton({ onGameAdded }: AddGameButtonProps) {
           Spiel hinzufügen
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[600px]">
-        {!session ? (
-          <>
-            <DialogHeader>
-              <DialogTitle>Authentifizierung erforderlich</DialogTitle>
-              <DialogDescription>
-                Du musst dich anmelden, um ein Spiel hinzuzufügen. Bitte klicke
-                auf die Schaltfläche unten, um dich anzumelden.
-              </DialogDescription>
-            </DialogHeader>
-            <CardFooter>
-              <Button
-                onClick={() => router.push("/api/auth/signin")}
-                className="ml-auto"
-              >
-                Anmelden
-              </Button>
-            </CardFooter>
-          </>
-        ) : (
-          <>
+      {!session ? (
+        <LoginRequiredDialog
+          open={!session && isOpen}
+          onOpenChange={setIsOpen}
+        />
+      ) : (
+        <>
+          <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[600px]">
             <DialogHeader>
               <DialogTitle>Neues Spiel hinzufügen</DialogTitle>{" "}
               <DialogDescription>
@@ -67,9 +52,9 @@ export function AddGameButton({ onGameAdded }: AddGameButtonProps) {
                 if (onGameAdded) onGameAdded();
               }}
             />
-          </>
-        )}
-      </DialogContent>
+          </DialogContent>
+        </>
+      )}
     </Dialog>
   );
 }
