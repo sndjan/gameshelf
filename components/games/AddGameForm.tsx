@@ -43,7 +43,6 @@ export function AddGameForm({ onSuccess }: AddGameFormProps) {
     try {
       setIsLoading(true);
 
-      // Convert comma-separated tags to array
       const processedData = {
         ...formData,
         tags: formData.tags
@@ -78,7 +77,9 @@ export function AddGameForm({ onSuccess }: AddGameFormProps) {
       router.refresh();
 
       if (onSuccess) {
-        onSuccess();
+        setTimeout(() => {
+          onSuccess();
+        }, 100);
       }
     } catch (error) {
       console.error("Error adding game:", error);

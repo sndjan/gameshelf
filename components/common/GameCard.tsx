@@ -160,7 +160,11 @@ export function GameCard({
             isFavorite ? "Aus Favoriten entfernen" : "Zu Favoriten hinzufügen"
           }
         >
-          <Heart className={`h-4 w-4`} fill={isFavorite ? "black" : "none"} />
+          <Heart
+            className={`h-4 w-4`}
+            fill={isFavorite ? "red" : "none"}
+            color={isFavorite ? "red" : "currentColor"}
+          />
         </Button>
       </CardFooter>
       <LoginRequiredDialog open={showLogin} onOpenChange={setShowLogin} />
