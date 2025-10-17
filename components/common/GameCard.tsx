@@ -9,12 +9,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  ArrowRightIcon,
-  BarChartHorizontal,
   Clock,
+  ExternalLink,
   Heart,
-  Library,
-  Tags,
+  Layers,
+  Target,
   Users,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -115,14 +114,14 @@ export function GameCard({
 
           {difficulty && (
             <div className="flex items-center gap-1.5">
-              <BarChartHorizontal className="h-4 w-4 text-muted-foreground" />
+              <Target className="h-4 w-4 text-muted-foreground" />
               <span className="text-xs">{difficulty}</span>
             </div>
           )}
 
           {decks && (
             <div className="flex items-center gap-1.5">
-              <Library className="h-4 w-4 text-muted-foreground" />
+              <Layers className="h-4 w-4 text-muted-foreground" />
               <span className="text-xs">{decks}</span>
             </div>
           )}
@@ -130,7 +129,7 @@ export function GameCard({
 
         {tags && tags.length > 0 && (
           <div className="flex items-start gap-2 flex-wrap">
-            <Tags className="h-4 w-4 mt-0.5 text-muted-foreground" />
+            <Target className="h-4 w-4 mt-0.5 text-muted-foreground" />
             <div className="flex flex-wrap gap-1">
               {tags.map((tag) => (
                 <span
@@ -155,7 +154,7 @@ export function GameCard({
         >
           <Link href={"/"}>
             Erfahre mehr
-            <ArrowRightIcon className="ml-1.5 h-3 w-3" />
+            <ExternalLink className="ml-1.5 h-3 w-3" />
           </Link>
         </Button>
         <Button

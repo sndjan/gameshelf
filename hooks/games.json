@@ -27,6 +27,34 @@
       "userId": "sndjan",
       "createdAt": "2025-01-26T15:10:35.095Z",
       "updatedAt": "2025-01-26T15:10:35.095Z"
+    },
+    {
+      "_id": "68f288e4c660a6926dd753a9",
+      "name": "Arschloch",
+      "description": "Ein geselliges Kartenspiel mit Hierarchie und Kartentausch.",
+      "rules": "Arschloch ist ein Kartenspiel für 3-8 Spieler mit dem Ziel, möglichst schnell alle Karten loszuwerden. Gespielt wird mit 32 oder 52 Karten. Alle Karten werden gleichmäßig verteilt. Es gibt eine Rangfolge: Präsident (1. Platz), Vizepräsident (2. Platz), normale Bürger und das Arschloch (letzter Platz). Vor jeder Runde tauscht das Arschloch seine beiden besten Karten mit dem Präsidenten, der seine beiden schlechtesten zurückgibt. Der Präsident beginnt mit einer beliebigen Karte oder Kartenkombination (Paare, Drillinge). Die anderen müssen höhere Karten derselben Anzahl spielen oder passen. Wer die höchste Karte spielt, gewinnt den Stich und beginnt neu. Wer zuerst alle Karten los ist, wird Präsident der nächsten Runde. Das Spiel ist geprägt von sozialer Hierarchie und Schadenfreude.",
+      "players": "3-8 Spieler",
+      "duration": "30-60 Minuten",
+      "decks": "32 oder 52 Karten",
+      "difficulty": "Leicht",
+      "tags": ["Gesellschaftsspiel", "Hierarchie"],
+      "userId": "sndjan",
+      "createdAt": "2025-01-26T15:15:35.095Z",
+      "updatedAt": "2025-01-26T15:15:35.095Z"
+    },
+    {
+      "_id": "68f288e4c660a6926dd753aa",
+      "name": "Spoons",
+      "description": "Ein schnelles Reaktionsspiel mit Karten und Löffeln.",
+      "rules": "Spoons ist ein temporeicher Kartenspiel für 3-13 Spieler. Benötigt werden ein Kartendeck und Löffel (einer weniger als Spieler). Jeder bekommt 4 Karten, die Löffel liegen in der Mitte. Ziel ist es, 4 gleiche Karten zu sammeln. Der Dealer zieht eine Karte vom Stapel und gibt eine weiter, alle anderen geben gleichzeitig eine Karte an den Nachbarn weiter. Sobald jemand 4 gleiche Karten hat, schnappt er sich einen Löffel. Alle anderen müssen sofort ebenfalls einen Löffel greifen. Wer keinen bekommt, erhält einen Buchstaben von 'SPOON'. Bei vollständigem 'SPOON' scheidet man aus. Das Spiel wird schneller und chaotischer, je mehr Runden gespielt werden. Spoons kombiniert Kartenspiel mit Reaktionsschnelligkeit und sorgt für viel Gelächter.",
+      "players": "3-13 Spieler",
+      "duration": "15-30 Minuten",
+      "decks": "52 Karten + Löffel",
+      "difficulty": "Leicht",
+      "tags": ["Reaktion", "Party"],
+      "userId": "sndjan",
+      "createdAt": "2025-01-26T15:20:35.095Z",
+      "updatedAt": "2025-01-26T15:20:35.095Z"
     }
   ]
 }

@@ -3,8 +3,7 @@
 import { Header } from "@/components/common/Header";
 import { Button } from "@/components/ui/button";
 import { useGames } from "@/hooks/useGames";
-import { useTranslation } from "@/i18n/client";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Clock, Layers, Tag, Target, Users } from "lucide-react";
 
 interface DetailsProps {
   lng: string;
@@ -12,8 +11,8 @@ interface DetailsProps {
   onBack: () => void;
 }
 
-export default function Details({ lng, gameId, onBack }: DetailsProps) {
-  const { t } = useTranslation(lng, "games");
+export default function Details({ gameId, onBack }: DetailsProps) {
+  // const { t } = useTranslation(lng, "games");
   const { games, isLoading } = useGames();
 
   const game = games.find((g) => g._id === gameId);
@@ -46,7 +45,7 @@ export default function Details({ lng, gameId, onBack }: DetailsProps) {
   return (
     <main>
       <Header heading={game.name} />
-      <div className="container mx-auto p-2">
+      <div className="container mx-auto p-4">
         <Button onClick={onBack} variant="outline" className="mb-4">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Zurück
@@ -61,38 +60,38 @@ export default function Details({ lng, gameId, onBack }: DetailsProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-muted-foreground" />
+                <Users className="h-6 w-6" />
                 <span className="font-medium">Spieler:</span>
                 <span>{game.players}</span>
               </div>
 
               <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-muted-foreground" />
+                <Clock className="h-6 w-6" />
                 <span className="font-medium">Dauer:</span>
                 <span>{game.duration}</span>
               </div>
 
               <div className="flex items-center gap-2">
-                <Trophy className="h-4 w-4 text-muted-foreground" />
+                <Target className="h-6 w-6" />
                 <span className="font-medium">Schwierigkeit:</span>
                 <span>{game.difficulty}</span>
               </div>
 
               <div className="flex items-center gap-2">
-                <Layers className="h-4 w-4 text-muted-foreground" />
+                <Layers className="h-6 w-6" />
                 <span className="font-medium">Karten:</span>
                 <span>{game.decks}</span>
               </div>
             </div>
 
             {game.tags && game.tags.length > 0 && (
-              <div>
-                <span className="font-medium mb-2 block">Tags:</span>
+              <div className="flex items-center gap-2">
+                <Tag className="h-6 w-6" />
                 <div className="flex flex-wrap gap-2">
                   {game.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="px-2 py-1 bg-secondary text-secondary-foreground rounded-md text-sm"
+                      className="px-2 bg-secondary text-secondary-foreground rounded-md text-sm"
                     >
                       {tag}
                     </span>

@@ -1,7 +1,6 @@
 "use client";
 
 import { Header } from "@/components/common/Header";
-import { AddGameButton } from "@/components/games/AddGameButton";
 import { useGames } from "@/hooks/useGames";
 import { useTranslation } from "@/i18n/client";
 import { useState } from "react";
@@ -10,8 +9,7 @@ import Details from "./Details";
 
 export default function Games({ lng }: { lng: string }) {
   const { t } = useTranslation(lng, "games");
-  const { games, isLoading, favoriteIds, handleToggleFavorite, fetchGames } =
-    useGames();
+  const { games, isLoading, favoriteIds, handleToggleFavorite } = useGames();
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
 
   if (selectedGameId) {
@@ -27,9 +25,9 @@ export default function Games({ lng }: { lng: string }) {
   return (
     <main>
       <Header heading={t("h1")} />
-      <div className="flex justify-between items-center pl-2">
+      {/* <div className="flex justify-between items-center pl-2">
         <AddGameButton onGameAdded={fetchGames} />
-      </div>
+      </div> */}
       <div className="container mx-auto p-2">
         {isLoading ? (
           <>
