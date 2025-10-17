@@ -1,0 +1,32 @@
+{
+  "games": [
+    {
+      "_id": "68f288e4c660a6926dd753a7",
+      "name": "Durak",
+      "description": "Ein traditionelles russisches Kartenspiel.",
+      "rules": "Durak ist ein russisches Kartenspiel für 2–6 Spieler, bei dem es darum geht, nicht als Letzter mit Karten übrig zu bleiben – denn der Letzte ist der 'Durak' (der Dumme). Gespielt wird mit 36 Karten (6 bis Ass), jeder bekommt zu Beginn 6 Karten. Eine Trumpffarbe wird durch Aufdecken der nächsten Karte bestimmt. Der Angreifer spielt eine Karte aus, der Verteidiger muss mit einer höheren Karte derselben Farbe oder einer Trumpfkarte stechen. Weitere Spieler können passende Karten (gleicher Wert) dazuwerfen, wenn der Verteidiger bereits gestochen hat. Kann der Verteidiger alle Karten abwehren, kommen sie aus dem Spiel. Gelingt das nicht, muss er alle nehmen. Danach wird auf 6 Karten nachgezogen. Der nächste Angriff beginnt im Uhrzeigersinn. Wer keine Karten mehr hat, scheidet aus – übrig bleibt am Ende der Durak. Es gibt viele Varianten, z. B. Teamspiel oder 'Perevodnoy Durak' (weiterleiten des Angriffs). Durak ist schnell, taktisch und oft gemein – typisch für seine Herkunft.",
+      "players": "2-6 Spieler",
+      "duration": "30 Minuten",
+      "decks": "36 Karten (6 bis Ass)",
+      "difficulty": "Mittel",
+      "tags": ["Strategie"],
+      "userId": "sndjan",
+      "createdAt": "2025-01-26T15:05:35.095Z",
+      "updatedAt": "2025-01-26T15:05:35.095Z"
+    },
+    {
+      "_id": "68f288e4c660a6926dd753a8",
+      "name": "Lügen",
+      "description": "Ein Bluff-Kartenspiel, bei dem man geschickt täuschen muss.",
+      "rules": "Lügen ist ein Bluff-Kartenspiel für mehrere Spieler. Zu Beginn werden alle Karten gleichmäßig an die Spieler verteilt. Eine Person beginnt, indem sie verdeckt eine Karte ausspielt und eine Zahl dazu ansagt. Der nächste Spieler kann entweder 'Lüge' rufen (dann wird die Karte aufgedeckt - stimmt die Zahl nicht, nimmt der Lügner alle gespielten Karten, stimmt sie, nimmt der Zweifler sie) oder die gleiche Zahl ansagen und weitere Karten verdeckt dazulegen. Besonderheit: Wer 4 gleiche Karten auf der Hand hat, darf diese sofort offen rauslegen. Das Spiel endet, wenn jemand alle seine Karten losgeworden ist - dieser Spieler gewinnt. Alternativ verliert derjenige, der 4 Buben auf der Hand sammelt. Lügen erfordert Poker-Face, Gedächtnis und psychologisches Geschick.",
+      "players": "3-8 Spieler",
+      "duration": "20-40 Minuten",
+      "decks": "52 Karten (Standarddeck)",
+      "difficulty": "Leicht",
+      "tags": ["Bluff", "Psychologie"],
+      "userId": "sndjan",
+      "createdAt": "2025-01-26T15:10:35.095Z",
+      "updatedAt": "2025-01-26T15:10:35.095Z"
+    }
+  ]
+}

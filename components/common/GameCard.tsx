@@ -34,6 +34,7 @@ interface GameCardProps {
   _id: string;
   isFavorite?: boolean;
   onFavoriteChange?: (fav: boolean) => void;
+  onGameSelect?: (gameId: string) => void;
 }
 
 export function GameCard({
@@ -48,6 +49,7 @@ export function GameCard({
   _id,
   isFavorite: isFavoriteProp,
   onFavoriteChange,
+  onGameSelect,
 }: GameCardProps & {
   _id: string;
   isFavorite?: boolean;
@@ -144,7 +146,13 @@ export function GameCard({
       </CardContent>
 
       <CardFooter className="flex justify-between gap-2">
-        <Button asChild variant="outline" className="flex-1" size="sm">
+        <Button
+          asChild
+          variant="outline"
+          className="flex-1"
+          size="sm"
+          onClick={() => onGameSelect && onGameSelect(_id)}
+        >
           <Link href={"/"}>
             Erfahre mehr
             <ArrowRightIcon className="ml-1.5 h-3 w-3" />

@@ -1,28 +1,27 @@
 import type { Game } from "@/types/Game";
+import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 
 export function useGames(options?: { uploadedByMe?: boolean }) {
   const [games, setGames] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
+  const { data: session } = useSession();
 
   const fetchGames = useCallback(async () => {
+    if (!session) return;
     setIsLoading(true);
-    try {
-      const gamesData = await import("./games.json");
-      let games = gamesData.games || gamesData.default?.games || [];
-      if (options?.uploadedByMe) {
-        games = games.filter((game) => game.userId === "current-user");
-      }
-      setGames(games);
-    } catch (error) {
-      console.error("Error loading games:", error);
-      setGames([]);
-    }
+    const endpoint = options?.uploadedByMe
+      ? "/api/games?uploadedByMe=true"
+      : "/api/games";
+    const res = await fetch(endpoint);
+    const data = await res.json();
+    setGames(data.games || []);
     setIsLoading(false);
-  }, [options?.uploadedByMe]);
+  }, [session, options?.uploadedByMe]);
 
   const fetchFavorites = useCallback(async () => {
+    if (!session) return;
     setIsLoading(true);
     const res = await fetch("/api/favorites", { cache: "no-store" });
     const data = await res.json();
@@ -31,11 +30,11 @@ export function useGames(options?: { uploadedByMe?: boolean }) {
         ? data.favorites.map((f: { _id: string }) => f._id)
         : []
     );
-  }, []);
+  }, [session]);
 
   useEffect(() => {
     fetchGames();
-    // fetchFavorites();
+    fetchFavorites();
   }, [fetchGames, fetchFavorites, options?.uploadedByMe]);
 
   const handleToggleFavorite = async (

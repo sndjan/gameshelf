@@ -7,6 +7,7 @@ interface GamesGridProps {
   isLoading: boolean;
   onToggleFavorite?: (gameId: string, isFavorite: boolean) => void;
   favorites?: string[];
+  onGameSelect?: (gameId: string | null) => void;
   emptyText?: string;
 }
 
@@ -16,9 +17,8 @@ export const GamesGrid: React.FC<GamesGridProps> = ({
   onToggleFavorite,
   favorites = [],
   emptyText = "Keine Spiele gefunden.",
+  onGameSelect,
 }) => {
-  console.log(games);
-  console.log(favorites);
   return (
     <div className="container mx-auto p-2">
       {isLoading ? (
@@ -45,6 +45,9 @@ export const GamesGrid: React.FC<GamesGridProps> = ({
                 onToggleFavorite
                   ? (fav) => onToggleFavorite(game._id, fav)
                   : undefined
+              }
+              onGameSelect={(gameId) =>
+                onGameSelect ? onGameSelect(gameId) : undefined
               }
             />
           ))}

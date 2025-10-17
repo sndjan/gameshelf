@@ -2,14 +2,27 @@
 
 import { Header } from "@/components/common/Header";
 import { AddGameButton } from "@/components/games/AddGameButton";
-import { useTranslation } from "@/i18n/client";
 import { useGames } from "@/hooks/useGames";
+import { useTranslation } from "@/i18n/client";
+import { useState } from "react";
 import { GamesGrid } from "../common/GamesGrid";
+import Details from "./Details";
 
 export default function Games({ lng }: { lng: string }) {
   const { t } = useTranslation(lng, "games");
   const { games, isLoading, favoriteIds, handleToggleFavorite, fetchGames } =
     useGames();
+  const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
+
+  if (selectedGameId) {
+    return (
+      <Details
+        lng={lng}
+        gameId={selectedGameId}
+        onBack={() => setSelectedGameId(null)}
+      />
+    );
+  }
 
   return (
     <main>
@@ -35,6 +48,7 @@ export default function Games({ lng }: { lng: string }) {
             isLoading={isLoading}
             favorites={favoriteIds}
             onToggleFavorite={handleToggleFavorite}
+            onGameSelect={setSelectedGameId}
             emptyText="Keine Spiele gefunden."
           />
         )}
