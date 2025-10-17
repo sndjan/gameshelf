@@ -55,6 +55,20 @@
       "userId": "sndjan",
       "createdAt": "2025-01-26T15:20:35.095Z",
       "updatedAt": "2025-01-26T15:20:35.095Z"
+    },
+    {
+      "_id": "68f288e4c660a6926dd753ab",
+      "name": "Shithead",
+      "description": "Ein Kartenspiel, bei dem niemand als Letzter übrig bleiben will.",
+      "rules": "Shithead ist ein Kartenspiel für 2-8 Spieler mit dem Ziel, alle Karten loszuwerden und nicht als Letzter (der 'Shithead') übrig zu bleiben. Jeder Spieler erhält 9 Karten: 3 verdeckte vor sich, 3 offene darauf und 3 auf der Hand. Gespielt wird auf einen Ablagestapel, wobei die gespielte Karte gleich oder höher sein muss als die oberste Karte. Besondere Karten: 2 kann auf alles gespielt werden, 10 verbrennt den Stapel (wird entfernt), bei 4 gleichen Karten hintereinander wird der Stapel ebenfalls verbrannt. Zuerst spielen alle ihre Handkarten, dann die offenen Tischkarten, zuletzt die verdeckten (blind). Kann man nicht spielen, muss man den ganzen Stapel aufnehmen. Wer zuerst alle Karten los ist, ist raus. Das Spiel endet, wenn nur noch ein Spieler Karten hat - dieser ist der Shithead.",
+      "players": "2-8 Spieler",
+      "duration": "20-45 Minuten",
+      "decks": "52 Karten (Standarddeck)",
+      "difficulty": "Mittel",
+      "tags": ["Strategie", "Glück"],
+      "userId": "sndjan",
+      "createdAt": "2025-01-26T15:25:35.095Z",
+      "updatedAt": "2025-01-26T15:25:35.095Z"
     }
   ]
 }
